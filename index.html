@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشفير الأرقام</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>تشفير الأرقام</h2>
+        <input type="text" id="numberInput" placeholder="أدخل رقمًا">
+        <button onclick="encryptNumber()">تشفير</button>
+        <div id="encryptedNumber"></div>
+        
+        <input type="text" id="encryptedInput" placeholder="أدخل الرقم المشفر">
+        <button onclick="decryptNumber()">فك التشفير</button>
+        <div id="decryptedNumber"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
