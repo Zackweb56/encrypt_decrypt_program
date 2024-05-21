@@ -1,19 +1,84 @@
-.container {
-    text-align: center;
-    margin-top: 50px;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap");
+
+* {
+  outline: none;
 }
 
-input {
-    padding: 10px;
-    margin-right: 10px;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  background-color: #222;
+  font-family: "Noto Naskh Arabic", serif;
+  font-style: normal;
 }
 
-button {
-    padding: 10px 20px;
+.result {
+  text-align: center;
+  font-size: 45px;
+  font-weight: bold;
+  color: #fff;
+  display: none;
+}
+
+.result_done {
+  color: #00af43;
+}
+
+.encrypt_decrypt_box {
+  display: flex;
+  width: 500px;
+  margin-top: 8%;
+  margin-left: auto;
+  margin-right: auto;
+
+  input {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 0px;
+    box-shadow: none;
+    border: none;
+    box-shadow: 2px 14px 16px rgba(0, 0, 0, 0.19);
+  }
+
+  button {
+    background-color: #fff;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 50px;
+    border: none;
     cursor: pointer;
+    span {
+      padding: 10px 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #006af5;
+      border-radius: 20px;
+      &:hover {
+        background-color: #0050b9;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.19);
+      }
+    }
+  }
 }
 
-#encryptedNumber {
-    margin-top: 20px;
+footer p {
+  color: #fff;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .result {
+    text-align: justify;
     font-size: 20px;
+    margin: 15px 0;
+  }
 }

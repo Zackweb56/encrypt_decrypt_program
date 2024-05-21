@@ -1,51 +1,119 @@
-function encryptNumber() {
-    const input = document.getElementById("numberInput").value;
-    const encryptedNumber = encrypt(input);
-    document.getElementById("encryptedNumber").innerText = `Encrypted number: ${encryptedNumber}`;
+function encryptInput() {
+    const input = document.getElementById("Input").value;
+    const encryptedInput = encrypt(input);
+    document.getElementById("encryptedInput").innerText = encryptedInput;
+    if(input === '') {
+        document.getElementById('error_encrypt').textContent = "يجب عليك كتابة شيء ما أولا";
+        document.getElementById('error_encrypt').style.color = "red";
+        console.log("input is empty");
+    }else{
+        document.getElementById('error_encrypt').textContent = "";
+        document.getElementById("encrypt_result").style.display = 'block';
+    }
 }
 
-function decryptNumber() {
-    const encryptedInput = document.getElementById("encryptedInput").value;
-    const decryptedNumber = decrypt(encryptedInput);
-    document.getElementById("decryptedNumber").innerText = `Decrypted number: ${decryptedNumber}`;
+const shift = 5;
+const key = "MYSECRETKEY"; // A key for Vigenère cipher
+
+// Function to apply Vigenère cipher
+function vigenereCipher(text, key) {
+    let result = "";
+    for (let i = 0; i < text.length; i++) {
+        const charCode = text.charCodeAt(i);
+        const keyCharCode = key.charCodeAt(i % key.length);
+        // Encrypt alphabetic characters
+        if (charCode >= 65 && charCode <= 90) { // Uppercase A-Z
+            result += String.fromCharCode(((charCode - 65 + (keyCharCode % 26)) % 26) + 65);
+        } else if (charCode >= 97 && charCode <= 122) { // Lowercase a-z
+            result += String.fromCharCode(((charCode - 97 + (keyCharCode % 26)) % 26) + 97);
+        } else {
+            result += text[i]; // Non-alphabetic characters remain unchanged
+        }
+    }
+    return result;
 }
 
+// Function to reverse the text
+function reverseText(text) {
+    return text.split('').reverse().join('');
+}
+
+// Final encryption function combining multiple steps
 function encrypt(number) {
-    const shift = 3; // You can change the shift value for stronger or weaker encryption
+    // Initial shift cipher
     let encrypted = "";
-
     for (let i = 0; i < number.length; i++) {
         const charCode = number.charCodeAt(i);
-        let encryptedCharCode;
-
-        if (charCode >= 48 && charCode <= 57) { // Check if it's a digit
-            encryptedCharCode = ((charCode - 48 + shift) % 10) + 48;
+        if (charCode >= 48 && charCode <= 57) {
+            const shiftedCharCode = ((charCode - 48 + shift) % 10) + 48;
+            encrypted += String.fromCharCode(shiftedCharCode);
         } else {
-            encryptedCharCode = charCode; // Leave non-digits unchanged
+            encrypted += number[i];
         }
-
-        encrypted += String.fromCharCode(encryptedCharCode);
     }
+
+    // Apply Vigenère cipher
+    encrypted = vigenereCipher(encrypted, key);
+
+    // Reverse the text
+    encrypted = reverseText(encrypted);
 
     return encrypted;
 }
 
-function decrypt(encryptedNumber) {
-    const shift = 3; // Assuming the same shift value as used for encryption
-    let decrypted = "";
+// ------------------------------------------------------------------------------
 
-    for (let i = 0; i < encryptedNumber.length; i++) {
-        const charCode = encryptedNumber.charCodeAt(i);
-        let decryptedCharCode;
+function decryptInput() {
+    const input = document.getElementById("Input_2").value;
+    const encryptedInput = decrypt(input);
+    document.getElementById("decryptedInput").innerText = encryptedInput;
+    if(input === '') {
+        document.getElementById('error_decrypt').textContent = "يجب عليك كتابة شيء ما أولا";
+        document.getElementById('error_decrypt').style.color = "red";
+        console.log("input is empty");
+    }else{
+        document.getElementById('error_decrypt').textContent = "";
+        document.getElementById("decrypt_result").style.display = 'block';
+    }
+}
 
-        if (charCode >= 48 && charCode <= 57) { // Check if it's a digit
-            decryptedCharCode = ((charCode - 48 - shift + 10) % 10) + 48;
+// Function to reverse the Vigenère cipher
+function reverseVigenereCipher(text, key) {
+    let result = "";
+    for (let i = 0; i < text.length; i++) {
+        const charCode = text.charCodeAt(i);
+        const keyCharCode = key.charCodeAt(i % key.length);
+        // Decrypt alphabetic characters
+        if (charCode >= 65 && charCode <= 90) { // Uppercase A-Z
+            result += String.fromCharCode(((charCode - 65 - (keyCharCode % 26) + 26) % 26) + 65);
+        } else if (charCode >= 97 && charCode <= 122) { // Lowercase a-z
+            result += String.fromCharCode(((charCode - 97 - (keyCharCode % 26) + 26) % 26) + 97);
         } else {
-            decryptedCharCode = charCode; // Leave non-digits unchanged
+            result += text[i]; // Non-alphabetic characters remain unchanged
         }
+    }
+    return result;
+}
 
-        decrypted += String.fromCharCode(decryptedCharCode);
+// Final decryption function combining multiple steps
+function decrypt(encryptedNumber) {
+    // Reverse the text
+    let decrypted = reverseText(encryptedNumber);
+
+    // Reverse the Vigenère cipher
+    decrypted = reverseVigenereCipher(decrypted, key);
+
+    // Initial shift cipher (reverse the shift)
+    let originalNumber = "";
+    for (let i = 0; i < decrypted.length; i++) {
+        const charCode = decrypted.charCodeAt(i);
+        if (charCode >= 48 && charCode <= 57) {
+            const originalCharCode = ((charCode - 48 - shift + 10) % 10) + 48;
+            originalNumber += String.fromCharCode(originalCharCode);
+        } else {
+            originalNumber += decrypted[i];
+        }
     }
 
-    return decrypted;
+    return originalNumber;
 }
