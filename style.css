@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap");
 
 * {
-  outline: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -29,24 +31,18 @@ body {
 
 .encrypt_decrypt_box {
   display: flex;
-  width: 500px;
-  margin-top: 8%;
-  margin-left: auto;
-  margin-right: auto;
-
+  margin-top: 15%;
   input {
     flex: 1;
     padding: 15px 20px;
-    font-size: 1.1em;
+    font-size: 20px;
     border-top-right-radius: 50px;
     border-top-left-radius: 0px;
     border-bottom-right-radius: 50px;
     border-bottom-left-radius: 0px;
-    box-shadow: none;
     border: none;
     box-shadow: 2px 14px 16px rgba(0, 0, 0, 0.19);
   }
-
   button {
     background-color: #fff;
     border-top-right-radius: 0px;
@@ -56,6 +52,7 @@ body {
     border: none;
     cursor: pointer;
     span {
+      margin-left: 5px;
       padding: 10px 15px;
       font-size: 20px;
       font-weight: bold;
@@ -76,9 +73,22 @@ footer p {
 }
 
 @media screen and (max-width: 768px) {
+  .encrypt_decrypt_box {
+    input {
+      font-size: 16px;
+    }
+    button {
+      span {
+        font-size: 16px;
+      }
+    }
+  }
   .result {
     text-align: justify;
     font-size: 20px;
     margin: 15px 0;
+  }
+  footer p {
+    text-align: center;
   }
 }
