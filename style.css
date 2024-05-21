@@ -18,15 +18,39 @@ body {
 }
 
 .result {
+  margin-top: 12px;
   text-align: center;
-  font-size: 45px;
+  font-size: 18px;
   font-weight: bold;
   color: #fff;
   display: none;
 }
 
 .result_done {
-  color: #00af43;
+  padding: 8px;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  outline: none;
+  border: 1px solid #aaaaaab7;
+  /* border-radius: 50px; */
+  background-color: #111;
+  color: #c9c9c9b7;
+  font-size: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.copy_btn {
+  margin-top: 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #aaaaaab7;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-left: 1px solid #aaaaaab7;
+  border-right: 1px solid #aaaaaab7;
 }
 
 .encrypt_decrypt_box {
@@ -41,7 +65,9 @@ body {
     border-bottom-right-radius: 50px;
     border-bottom-left-radius: 0px;
     border: none;
+    outline: none;
     box-shadow: 2px 14px 16px rgba(0, 0, 0, 0.19);
+    color: #222;
   }
   button {
     background-color: #fff;

@@ -9,30 +9,28 @@
   <body>
     <div class="container">
       <div class="encrypt_decrypt_box">
-            <input
-                type="text"
-                id="Input"
-                placeholder="أكتب شيئا ليتم تشفيره"
-            />
-            <button onclick="encryptInput()"><span>تشفير</span></button><br>
-        </div>
-        <p id="error_encrypt"></p>
-        <div class="result" id="encrypt_result">تم التشفير بنجاح : <p class="result_done" id="encryptedInput"></p></div>
-
+        <input type="text" id="Input" placeholder="أكتب شيئا ليتم تشفيره" />
+        <button onclick="encryptInput()"><span>تشفير</span></button><br />
+      </div>
+      <p id="error_encrypt"></p>
+      <div class="result" id="encrypt_result">
+        تم التشفير بنجاح : <br>
+        <button onclick="copyText()" class="copy_btn">نسخ</button>
+        <input class="result_done" id="encryptedInput" />
+      </div>
       <div class="encrypt_decrypt_box">
-            <input
-                type="text"
-                id="Input_2"
-                placeholder="أدخل الرسالة المشفرة"
-            />
-            <button onclick="decryptInput()"><span>فك الشفرة</span></button>
-        </div>
-        <p id="error_decrypt"></p>
-        <div class="result" id="decrypt_result">تم فك التشفير بنجاح : <p class="result_done" id="decryptedInput"></p></div>
+        <input type="text" id="Input_2" placeholder="أدخل الرسالة المشفرة" />
+        <button onclick="decryptInput()"><span>فك الشفرة</span></button>
+      </div>
+      <p id="error_decrypt"></p>
+      <div class="result" id="decrypt_result">
+        تم فك التشفير بنجاح :
+        <p class="result_done" id="decryptedInput"></p>
+      </div>
     </div>
 
     <footer class="footer">
-        <p>Copyright &copy; 2024-2025 | Powered by BOUGHABA ZAKARIYAE</p>
+      <p>Copyright &copy; 2024-2025 | Powered by BOUGHABA ZAKARIYAE</p>
     </footer>
 
     <script src="script.js"></script>
